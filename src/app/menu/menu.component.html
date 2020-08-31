@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<h1 style="margin-left:20%"><strong>COCKTAIL MENU</strong></h1>
+<div class="col-sm-8 col-md-7">
+  <div class="container" *ngFor="let item of cocktailMenu" >
+    <div class="card bg-info" style="width:500px">
+      <div class="card-header" style="text-align:center"><h2><strong>{{ item.name }}</strong></h2></div>
+      <div class="card-body" style="text-align:center"><em>{{ item.description }}</em></div>
+      <div class="card-footer" >
+      <h3 style="float:right"> <strong>${{ item.price }}&emsp;</strong>
+        <a (click)="addToOrder(item.name, item.description, item.price)" class="btn btn-primary">Add</a>
+      </h3>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</div>
+<div class="col-sm-5 col-md-5">
+  <h2><strong>&emsp;Current Order</strong></h2>
+  <div class="container" *ngFor="let item of currentOrder">
+    <div class="card bg-success text-white" style="width:300px">
+      <div class="card-header" style="width:300px">
+        &emsp;{{ item.name }} - ${{ item.price }}
+        <a style="float:right" (click)="removeFromOrder(item.name)">Remove&emsp;</a>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="orderLength == 0;">No cocktails selected!  Add one to continue.</p>
+  <h3>&emsp;Total: ${{ displayTotal }}</h3>
+  <div *ngIf="orderLength != 0">
+    <form class="needs-validation" (submit)="onSend(templateForm)" #templateForm="ngForm" novalidate>
+      <label style="float:left" for="name">When ready to order, enter a name, then click Place Order.</label><br/>
+      <input style="width:200px; float:left" type="text" class="form-control" id="name" name="name" ngModel #name="ngModel" required>
+      <button style="float:left" class="btn btn-primary ml-2"  type="submit"> Place Order</button>
+    </form>
+  </div>
+</div>

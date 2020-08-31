@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<h1 style="margin-left:20%"><strong>ORDER QUEUE</strong></h1>
+<div class="col-sm-10">
+  <div class="container" *ngFor="let order of orderQueue" >
+    <div class="card bg-success" style="width:70%">
+      <div class="card-header" style="text-align:center"><h2><strong>{{ order.name }}</strong></h2></div>
+      <div class="card-body" style="text-align:center"><em>{{ order.drinks }}</em></div>
+      <div class="card-footer" >
+      </div>
+      <br/>
+      <br/>
+      <br/>
+    </div>
+  </div>
+</div>
